@@ -1,0 +1,7 @@
+ #!/bin/bash
+ 
+ # Backup quotidien
+ su -c "pg_dump -F c -b -v -f /backup/database/postgresql/ocpizza-$(date +"%Y-%m-%d-%H-%M-%S").dump ocpizza" postgres
+ 
+ # Suppression des backups de plus de 10 jours
+ su -c "find /backup/database/postgresql/ -type f -mtime +10 -delete" postgres
